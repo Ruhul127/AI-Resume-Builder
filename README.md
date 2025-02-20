@@ -29,7 +29,7 @@ A web application that helps users create, edit, and improve their resumes using
 ### Dashboard
 ![Dashboard](screenshots/dashboard.png)
 
-### Create/Edit Resume
+### Create Resume
 ![Create Resume](screenshots/create_resume.png)
 
 ### AI Suggestions
@@ -116,39 +116,25 @@ Follow these steps to set up the project locally:
 
 ```
 ai-resume-builder/
-├── app.py                # Main application file
-├── assets/               # Screenshots of project
+├── app.py                   # Main application file
+├── Assets/                  # Screenshots of project
+│   ├── ProjectExample1.PNG
+│   ├── ProjectExample2.PNG
+│   ├── ProjectExample3.PNG
+│   ├── ProjectExample4.PNG
+│   ├── ProjectExample5.PNG
+│   ├── ProjectExample6.PNG
+│   ├── ProjectExample7.PNG
 ├── instance/             
-│   └── resume builder.db # Database for project
-└── templates/            # HTML templates
-    ├── index.html
-    ├── register.html
-    ├── login.html
-    ├── dashboard.html
-    ├── resume.html
-    ├── suggestions.html
-    └── resume_tips.html
-```
-
----
-
-## Contributing
-
-Contributions are welcome! If you'd like to contribute, please follow these steps:
-
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix:
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Commit your changes:
-   ```bash
-   git commit -m "Add your message here"
-   ```
-4. Push to the branch:
-   ```bash
-   git push origin feature-name
-   ```
-5. Open a pull request.
-
----
+│   └── Resume_Builder.db    # Database for project
+├── Templates/               # HTML templates
+│   ├── index.html
+│   ├── register.html
+│   ├── login.html
+│   ├── dashboard.html
+│   ├── resume.html
+│   ├── suggestions.html
+│   ├── resume_tips.html
+├── Test API/                # API Testing Scripts
+│   └── OpenAI_TestAPI.py
+``` 
