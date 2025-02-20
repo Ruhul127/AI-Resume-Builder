@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: #f9f9f9;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        .btn {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .btn-danger {
+            background-color: #dc3545;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .resume-content {
+            display: none;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav style="background-color: #007BFF; padding: 10px; text-align: center;">
+        <a href="{{ url_for('index') }}" style="color: white; margin: 0 10px; text-decoration: none;">Home</a>
+        <a href="{{ url_for('dashboard') }}" style="color: white; margin: 0 10px; text-decoration: none;">Dashboard</a>
+        <a href="{{ url_for('create_resume') }}" style="color: white; margin: 0 10px; text-decoration: none;">Create Resume</a>
+        <a href="{{ url_for('resume_tips') }}" style="color: white; margin: 0 10px; text-decoration: none;">Resume Tips</a>
+        <a href="{{ url_for('logout') }}" style="color: white; margin: 0 10px; text-decoration: none;">Logout</a>
+    </nav>
+    {% endif %}
+    <div class="container">
+        <h2>Dashboard</h2>
+        <a href="{{ url_for('create_resume') }}" class="btn">Create New Resume</a>
+        <h3>Your Resumes:</h3>
+        <ul>
+            {% for resume in resumes %}
+            <li>
+                <strong>Job Role:</strong> {{ resume.job_role }}
+                <a href="{{ url_for('export_pdf', id=resume.id) }}" class="btn">Export as PDF</a>
+                <a href="{{ url_for('export_docx', id=resume.id) }}" class="btn">Export as Word</a>
+                <a href="{{ url_for('view_suggestions', id=resume.id) }}" class="btn">Get AI Suggestions</a>
+                <button onclick="toggleResumeContent('{{ resume.id }}')" class="btn">View Full Resume</button>
+                <form action="{{ url_for('delete_resume', id=resume.id) }}" method="POST" style="display:inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+                <div id="resume-content-{{ resume.id }}" class="resume-content">
+                    <pre>{{ resume.content }}</pre>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <script>
+        function toggleResumeContent(resumeId) {
+            var contentDiv = document.getElementById('resume-content-' + resumeId);
+            if (contentDiv.style.display === 'none' || contentDiv.style.display === '') {
+                contentDiv.style.display = 'block';
+            } else {
+                contentDiv.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+</html>

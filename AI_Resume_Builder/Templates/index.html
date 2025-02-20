@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Builder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 800px;
+            width: 100%;
+            margin-top: 8px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5rem;
+        }
+        p {
+            color: #555;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            margin: 0 10px;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .btn {
+            display: inline-block;
+            padding: 8px 10px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .feature {
+            background: #fff;
+            padding: 8px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%;
+            text-align: center;
+        }
+        .feature h3 {
+            color: #007BFF;
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav style="background-color: #007BFF; padding: 10px; text-align: center;">
+        <a href="{{ url_for('index') }}" style="color: white; margin: 0 10px; text-decoration: none;">Home</a>
+        <a href="{{ url_for('dashboard') }}" style="color: white; margin: 0 10px; text-decoration: none;">Dashboard</a>
+        <a href="{{ url_for('create_resume') }}" style="color: white; margin: 0 10px; text-decoration: none;">Create Resume</a>
+        <a href="{{ url_for('resume_tips') }}" style="color: white; margin: 0 10px; text-decoration: none;">Resume Tips</a>
+        <a href="{{ url_for('logout') }}" style="color: white; margin: 0 10px; text-decoration: none;">Logout</a>
+    </nav>
+    {% endif %}
+    <div class="container">
+        <h1>Welcome to the AI Resume Builder</h1>
+        <p>
+            This project helps you create, edit, and improve your resume with the power of AI. 
+            You can generate AI-driven suggestions to enhance your resume, export it as a PDF or Word document, 
+            and manage all your resumes in one place. Get started by registering or logging in!
+        </p>
+        
+        <!-- Call-to-Action Buttons -->
+        {% if not current_user.is_authenticated %}
+            <a href="{{ url_for('register') }}" class="btn">Register</a>
+            <a href="{{ url_for('login') }}" class="btn">Login</a>
+        {% endif %}
+        
+        <!-- Key Features Section -->
+        <div class="features">
+            <h2>Why Choose AI Resume Builder?</h2>
+            <div class="feature">
+                <h3>AI-Powered Suggestions</h3>
+                <p>Get tailored suggestions to improve your resume content and formatting.</p>
+            </div>
+            <div class="feature">
+                <h3>Export in Multiple Formats</h3>
+                <p>Download your resume as PDF, Word, or plain text with a single click.</p>
+            </div>
+            <div class="feature">
+                <h3>User-Friendly Interface</h3>
+                <p>Create and manage your resumes with ease using our intuitive dashboard.</p>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <h2>Our Achievements</h2>
+            <div class="stats-container">
+                <div class="stat">
+                    <h3><span class="count" data-target="10000">0</span>+</h3>
+                    <p>Resumes Created</p>
+                </div>
+                <div class="stat">
+                    <h3><span class="count" data-target="95">0</span>%</h3>
+                    <p>User Satisfaction</p>
+                </div>
+                <div class="stat">
+                    <h3>24/7</h3>
+                    <p>AI Support</p>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            const counters = document.querySelectorAll('.count');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const increment = target / 100;
+                let count = 0;
+
+                const updateCount = () => {
+                    if (count < target) {
+                        count += increment;
+                        counter.innerText = Math.ceil(count);
+                        setTimeout(updateCount, 10);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCount();
+            });
+        </script>
+
+        <style>
+            .stats {
+                text-align: center;
+                margin-top: 40px;
+            }
+            .stats-container {
+                display: flex;
+                justify-content: space-around;
+                margin-top: 20px;
+            }
+            .stat {
+                background: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 30%;
+                text-align: center;
+            }
+            .stat h3 {
+                color: #007BFF;
+                margin-bottom: 10px;
+            }
+        </style>
+    </div>
+</body>
+</html>

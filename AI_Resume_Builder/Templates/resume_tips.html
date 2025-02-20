@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Tips</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav style="background-color: #007BFF; padding: 10px; text-align: center;">
+        <a href="{{ url_for('index') }}" style="color: white; margin: 0 10px; text-decoration: none;">Home</a>
+        <a href="{{ url_for('dashboard') }}" style="color: white; margin: 0 10px; text-decoration: none;">Dashboard</a>
+        <a href="{{ url_for('create_resume') }}" style="color: white; margin: 0 10px; text-decoration: none;">Create Resume</a>
+        <a href="{{ url_for('resume_tips') }}" style="color: white; margin: 0 10px; text-decoration: none;">Resume Tips</a>
+        <a href="{{ url_for('logout') }}" style="color: white; margin: 0 10px; text-decoration: none;">Logout</a>
+    </nav>
+    {% endif %}
+    <div class="container">
+        <h2>General Resume Tips</h2>
+        <p>Here are some tips to help you create a strong and effective resume:</p>
+        <ul>
+            <li><strong>Tailor Your Resume:</strong> Customise your resume for each job application by highlighting relevant skills and experiences.</li>
+            <li><strong>Use Action Verbs:</strong> Start bullet points with strong action verbs like "managed," "developed," "optimised," etc.</li>
+            <li><strong>Quantify Achievements:</strong> Use numbers to showcase your accomplishments (e.g., "Increased sales by 20%").</li>
+            <li><strong>Keep It Concise:</strong> Limit your resume to 1-2 pages and avoid unnecessary details.</li>
+            <li><strong>Use a Clean Layout:</strong> Ensure your resume is easy to read with clear headings, bullet points, and consistent formatting.</li>
+            <li><strong>Proofread:</strong> Check for spelling and grammar errors before submitting your resume.</li>
+            <li><strong>Include Keywords:</strong> Use keywords from the job description to pass Applicant Tracking Systems (ATS).</li>
+            <li><strong>Highlight Relevant Experience:</strong> Focus on experiences that are most relevant to the job you're applying for.</li>
+            <li><strong>Add a Summary or Objective:</strong> Include a brief summary or objective at the top of your resume to grab the recruiter's attention.</li>
+            <li><strong>Use a Professional Email Address:</strong> Avoid using unprofessional email addresses (e.g., "coolguy123@email.com").</li>
+        </ul>
+        <p>For more personalised suggestions, use the <a href="{{ url_for('create_resume') }}">AI Resume Builder</a> to improve your resume!</p>
+    </div>
+</body>
+</html>

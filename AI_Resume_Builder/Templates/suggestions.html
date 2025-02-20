@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Suggestions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .suggestions {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav style="background-color: #007BFF; padding: 10px; text-align: center;">
+        <a href="{{ url_for('index') }}" style="color: white; margin: 0 10px; text-decoration: none;">Home</a>
+        <a href="{{ url_for('dashboard') }}" style="color: white; margin: 0 10px; text-decoration: none;">Dashboard</a>
+        <a href="{{ url_for('create_resume') }}" style="color: white; margin: 0 10px; text-decoration: none;">Create Resume</a>
+        <a href="{{ url_for('resume_tips') }}" style="color: white; margin: 0 10px; text-decoration: none;">Resume Tips</a>
+        <a href="{{ url_for('logout') }}" style="color: white; margin: 0 10px; text-decoration: none;">Logout</a>
+    </nav>
+    {% endif %}
+    <div class="container">
+        <h2>AI Suggestions for Resume</h2>
+        <div class="suggestions">
+            {{ suggestions }}
+        </div>
+        <a href="{{ url_for('dashboard') }}" class="btn">Back to Dashboard</a>
+    </div>
+</body>
+</html>

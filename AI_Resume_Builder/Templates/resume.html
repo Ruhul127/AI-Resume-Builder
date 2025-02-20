@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create/Edit Resume</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    {% if current_user.is_authenticated %}
+    <nav style="background-color: #007BFF; padding: 10px; text-align: center;">
+        <a href="{{ url_for('index') }}" style="color: white; margin: 0 10px; text-decoration: none;">Home</a>
+        <a href="{{ url_for('dashboard') }}" style="color: white; margin: 0 10px; text-decoration: none;">Dashboard</a>
+        <a href="{{ url_for('create_resume') }}" style="color: white; margin: 0 10px; text-decoration: none;">Create Resume</a>
+        <a href="{{ url_for('resume_tips') }}" style="color: white; margin: 0 10px; text-decoration: none;">Resume Tips</a>
+        <a href="{{ url_for('logout') }}" style="color: white; margin: 0 10px; text-decoration: none;">Logout</a>
+    </nav>
+    {% endif %}
+    <div class="container">
+        <h2>Create/Edit Resume</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <label for="job_role">Job Role:</label>
+            {{ form.job_role(size=32) }}
+            <label for="content">Resume Content:</label>
+            {{ form.content(rows=20, cols=50) }}
+            <button type="submit">Save Resume</button>
+        </form>
+    </div>
+</body>
+</html>
