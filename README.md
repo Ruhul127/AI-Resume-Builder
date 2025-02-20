@@ -18,25 +18,25 @@ A web application that helps users create, edit, and improve their resumes using
 ## Screenshots
 
 ### Home Page
-![Home Page](screenshots/home.png)
+![Home Page](AI_Resume_Builder/Assets/ProjectExample1.PNG)
 
 ### Registration Page
-![Registration Page](screenshots/register.png)
+![Registration Page](AI_Resume_Builder/Assets/ProjectExample2.PNG)
 
 ### Login Page
-![Login Page](screenshots/login.png)
+![Login Page](AI_Resume_Builder/Assets/ProjectExample3.PNG)
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](AI_Resume_Builder/Assets/ProjectExample4.PNG)
 
 ### Create Resume
-![Create Resume](screenshots/create_resume.png)
+![Create Resume](AI_Resume_Builder/Assets/ProjectExample5.PNG)
 
 ### AI Suggestions
-![AI Suggestions](screenshots/suggestions.png)
+![AI Suggestions](AI_Resume_Builder/Assets/ProjectExample6.PNG)
 
 ### Resume Tips
-![Resume Tips](screenshots/resume_tips.png)
+![Resume Tips](AI_Resume_Builder/Assets/ProjectExample7.PNG)
 
 ---
 
